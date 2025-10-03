@@ -38,7 +38,7 @@ docker ps
 
 #### 2.下载xboard-distro镜像
 ```bash
-wget xboard-distro.tar.gz
+wget https://github.com/oldfriendme/xboard-distro/releases/download/v1/xboard-distro.tar.gz
 ```
 
 <br>
@@ -55,6 +55,7 @@ docker import xboard-distro.tar.gz xboard-distro:v1
 #为了在非特权模式下监听http/https
 echo 79 > /proc/sys/net/ipv4/ip_unprivileged_port_start
 docker run -d --name xb1 --network host  xboard-distro:v1 /sbin/init
+# 或者使用-p 手动映射端口。
 ```
 注：这里为了简单，直接使用宿主机网络
 
@@ -104,3 +105,21 @@ grpc-0.0.0.0:16443/{grpcpath} **（caddy反代）**
 REALITY  0.0.0.0:443 **（默认未配置key，需要配置才能使用）**
 
 hy2 0.0.0.0 4443（udp） **(可以修改为其他端口)**
+
+### 许可证
+
+xboard-distro与xboard-oauth2以MIT许可证发布，其内部集成组件（xrayr,caddy,xboard,hy2）以原版许可证发布，参考原许可证
+
+<br>
+
+#### 注意，本项目以MIT许可证发布，请遵循MIT许可证的要求，特别是最后一条：
+```md
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+···
+
